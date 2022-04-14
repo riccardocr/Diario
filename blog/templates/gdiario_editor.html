@@ -1,0 +1,435 @@
+{% extends 'base.html' %}
+
+{% block title %}Post Editor - CondingWiz{% endblock %}
+
+{% block content %}
+
+<!-- Titolo --> 
+<div class="container content-container mt-3 px-3 px-lg-0">
+    {% if request.path == "/create-gdiario" %}
+    <h2>Diario</h2>
+    {% else %}
+    <h2>Aggiorna Diario</h2>
+    {% endif %}
+    
+    <form method="POST" enctype="multipart/form-data" novalidate>
+      {{ form.hidden_tag() }} <!-- csrf_token -->
+      <div class="row">
+        <div class="col-sm-5">
+          <!-- Indietro Data Salva --> 
+          <div class="card">
+            <nav class="navbar fixed navbar-light bg-light">
+              {{ form.back(class="col-2 btn btn-sm btn-secondary go-back") }}
+
+              <!-- {{ form.GData.label(class="col-1 m-1") }} -->
+              {{ form.GData(class="col-7 m-1",** {'disabled': 'disabled'}) }}
+              {% if form.GData.errors %}
+                {% for error in form.GData.errors %}
+                  <span class="text-danger">{{ error }}</span>
+                  <br>
+                {% endfor %}
+              {% endif %}
+
+              {{ form.submit(class="col-2 btn btn-sm btn-success") }}
+            </nav>
+          </div>
+          <div class="card" style="background-color: white; padding:10px; text-align: center;">
+            <h5><b>Parte Passiva</b></h5>   
+            <!-- Collapse1 -->
+            <div class="card" >
+              <a class="btn btn-danger" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="true" aria-controls="collapse1">
+                NON VIOLENZA E AMORE PER TUTTI
+              </a>
+            
+              <div class="collapse card-body" id="collapse1">
+                <div class="row g-2 border bg-light">
+                  {{ form.va_pensieri.label  (class="col col-sm-10 pt-2")}}
+                  {{ (form.va_pensieri(class="col col-sm-2",**{"onchange":"this.form.submit()"})) }}
+
+                  {% if form.va_pensieri.errors %}
+                    {% for error in form.va_pensieri.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+
+                <div class="row g-2 border bg-light">
+                  {{ form.va_parole.label (class="col col-sm-10 pt-2")}}
+                  {{ form.va_parole (class="col col-sm-2") }}
+
+                  {% if form.va_parole.errors %}
+                    {% for error in form.va_parole.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+
+                <div class="row g-2 border bg-light">
+                  {{ form.va_atti.label (class="col col-sm-10 pt-2")}}
+                  {{ form.va_atti (class="col col-sm-2") }}
+
+                  {% if form.va_atti.errors %}
+                    {% for error in form.va_atti.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <!-- Collapse2 -->
+            <div class="card" >
+              <a class="btn btn-danger" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="true" aria-controls="collapse2">
+                SINCERITA'
+              </a>
+            
+              <div class="collapse card-body" id="collapse2">
+                <div class="row g-2 border bg-light">
+                  {{ form.s_ipocrisia.label  (class="col col-sm-10 pt-2")}}
+                  {{ (form.s_ipocrisia(class="col col-sm-2")) }}
+
+                  {% if form.s_ipocrisia.errors %}
+                    {% for error in form.s_ipocrisia.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+
+                <div class="row g-2 border bg-light">
+                  {{ form.s_menzogne.label (class="col col-sm-10 pt-2")}}
+                  {{ form.s_menzogne (class="col col-sm-2") }}
+
+                  {% if form.s_menzogne.errors %}
+                    {% for error in form.s_menzogne.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+
+                <div class="row g-2 border bg-light">
+                  {{ form.s_guadagni_illeciti.label (class="col col-sm-10 pt-2")}}
+                  {{ form.s_guadagni_illeciti (class="col col-sm-2") }}
+
+                  {% if form.s_guadagni_illeciti.errors %}
+                    {% for error in form.s_guadagni_illeciti.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <!-- Collapse3 -->
+            <div class="card" >
+              <a class="btn btn-danger" data-toggle="collapse" href="#collapse3" role="button" aria-expanded="true" aria-controls="collapse3">
+                CASTITA'
+              </a>
+            
+              <div class="collapse card-body" id="collapse3">
+                <div class="row g-2 border bg-light">
+                  {{ form.c_pensieri.label  (class="col col-sm-10 pt-2")}}
+                  {{ (form.c_pensieri(class="col col-sm-2")) }}
+
+                  {% if form.c_pensieri.errors %}
+                    {% for error in form.c_pensieri.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+
+                <div class="row g-2 border bg-light">
+                  {{ form.c_parole.label (class="col col-sm-10 pt-2")}}
+                  {{ form.c_parole (class="col col-sm-2") }}
+
+                  {% if form.c_parole.errors %}
+                    {% for error in form.c_parole.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+
+                <div class="row g-2 border bg-light">
+                  {{ form.c_atti.label (class="col col-sm-10 pt-2")}}
+                  {{ form.c_atti (class="col col-sm-2") }}
+
+                  {% if form.c_atti.errors %}
+                    {% for error in form.c_atti.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <!-- Collapse4 -->
+            <div class="card" >
+              <a class="btn btn-danger" data-toggle="collapse" href="#collapse4" role="button" aria-expanded="true" aria-controls="collapse4">
+                UMILTA'
+              </a>
+            
+              <div class="collapse card-body" id="collapse4">
+                <div class="row g-2 border bg-light">
+                  {{ form.u_vanità_di_conoscenza.label  (class="col col-sm-10 pt-2")}}
+                  {{ (form.u_vanità_di_conoscenza(class="col col-sm-2")) }}
+
+                  {% if form.u_vanità_di_conoscenza.errors %}
+                    {% for error in form.u_vanità_di_conoscenza.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+
+                <div class="row g-2 border bg-light">
+                  {{ form.u_orgoglio_di_possesso.label (class="col col-sm-10 pt-2")}}
+                  {{ form.u_orgoglio_di_possesso (class="col col-sm-2") }}
+
+                  {% if form.u_orgoglio_di_possesso.errors %}
+                    {% for error in form.u_orgoglio_di_possesso.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+
+                <div class="row g-2 border bg-light">
+                  {{ form.u_abuso_di_potere.label (class="col col-sm-10 pt-2")}}
+                  {{ form.u_abuso_di_potere (class="col col-sm-2") }}
+
+                  {% if form.u_abuso_di_potere.errors %}
+                    {% for error in form.u_abuso_di_potere.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+            </div>      
+            <!-- Collapse5 -->
+            <div class="card" >
+              <a class="btn btn-danger" data-toggle="collapse" href="#collapse5" role="button" aria-expanded="true" aria-controls="collapse5">
+                DIETA
+              </a>
+            
+              <div class="collapse card-body" id="collapse5">
+                <div class="row g-2 border bg-light">
+                  {{ form.d_cibi_errati.label  (class="col col-sm-10 pt-2")}}
+                  {{ (form.d_cibi_errati(class="col col-sm-2")) }}
+
+                  {% if form.d_cibi_errati.errors %}
+                    {% for error in form.d_cibi_errati.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+
+                <div class="row g-2 border bg-light">
+                  {{ form.d_alcool.label (class="col col-sm-10 pt-2")}}
+                  {{ form.d_alcool (class="col col-sm-2") }}
+
+                  {% if form.d_alcool.errors %}
+                    {% for error in form.d_alcool.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+
+                <div class="row g-2 border bg-light">
+                  {{ form.d_droghe.label (class="col col-sm-10 pt-2")}}
+                  {{ form.d_droghe (class="col col-sm-2") }}
+
+                  {% if form.d_droghe.errors %}
+                    {% for error in form.d_droghe.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+            </div>        
+          </div> 
+          <div class="card" style="background-color: #eef0f1; padding:10px; text-align: center;">
+            <h5><b>Parte Attiva</b></h5>   
+            <!-- Collapse6 -->
+            <div class="card" >
+              <a class="btn btn-warning" data-toggle="collapse" href="#collapse6" role="button" aria-expanded="true" aria-controls="collapse6">
+                <b>MEDITAZIONE</b>
+              </a>
+            
+              <div class="collapse card-body" id="collapse6">
+                <div class="row g-2 border bg-light">
+                  {{ form.Luce_interiore.label  (class="col col-sm-8 pt-2")}}
+                  {{ (form.Luce_interiore(class="col col-sm-4")) }}
+
+                  {% if form.Luce_interiore.errors %}
+                    {% for error in form.Luce_interiore.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+
+                <div class="row g-2 border bg-light">
+                  {{ form.Suono_interiore.label (class="col col-sm-8 pt-2")}}
+                  {{ form.Suono_interiore (class="col col-sm-4") }}
+
+                  {% if form.Suono_interiore.errors %}
+                    {% for error in form.Suono_interiore.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+
+              </div>
+            </div>   
+            <!-- Collapse7 -->
+            <div class="card" >
+              <a class="btn btn-info" data-toggle="collapse" href="#collapse7" role="button" aria-expanded="true" aria-controls="collapse7">
+                SERVIZIO PRESTATO
+              </a>
+            
+              <div class="collapse card-body" id="collapse7">
+                <div class="row g-2 border bg-light">
+                  {{ form.fisico_e_morale.label  (class="col col-sm-10 pt-2")}}
+                  {{ (form.fisico_e_morale(class="col col-sm-2")) }}
+
+                  {% if form.fisico_e_morale.errors %}
+                    {% for error in form.fisico_e_morale.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+
+                <div class="row g-2 border bg-light">
+                  {{ form.finanziario.label (class="col col-sm-10 pt-2")}}
+                  {{ form.finanziario (class="col col-sm-2") }}
+
+                  {% if form.finanziario.errors %}
+                    {% for error in form.finanziario.errors %}
+                      <span class="text-danger">{{ error }}</span>
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+
+              </div>
+            </div>            
+          </div> 
+          <div class="card" style="background-color: white; padding:10px; text-align: center;">
+            <h5><b>Note</b></h5>   
+            <!-- TextArea1 -->
+            <div class="card" >
+              <a class="btn btn-success" data-toggle="collapse" href="#TextArea1" role="button" aria-expanded="true" aria-controls="TextArea1">
+                {{ form.Esperienze_di_visione_interiore.label }}
+              </a>
+
+              <div class="collapse card-body" id="TextArea1">
+                  <div>
+                    {{ (form.Esperienze_di_visione_interiore(class="col")) }}
+
+                    {% if form.Esperienze_di_visione_interiore.errors %}
+                      {% for error in form.Esperienze_di_visione_interiore.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                        <br>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+              </div>
+            </div>   
+            <!-- TextArea2 -->
+            <div class="card" >
+              <a class="btn btn-success" data-toggle="collapse" href="#TextArea2" role="button" aria-expanded="true" aria-controls="TextArea2">
+                {{ form.Esperienze_di_ascolto_interiore.label }}
+              </a>
+
+              <div class="collapse card-body" id="TextArea2">
+                  <div>
+                    {{ (form.Esperienze_di_ascolto_interiore(class="col")) }}
+
+                    {% if form.Esperienze_di_ascolto_interiore.errors %}
+                      {% for error in form.Esperienze_di_ascolto_interiore.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                        <br>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+              </div>
+            </div>   
+            <!-- TextArea3 -->
+            <div class="card" >
+              <a class="btn btn-success" data-toggle="collapse" href="#TextArea3" role="button" aria-expanded="true" aria-controls="TextArea3">
+                {{ form.Grado_di_superamento_della_coscienza_fisica.label }}
+              </a>
+
+              <div class="collapse card-body" id="TextArea3">
+                  <div>
+                    {{ (form.Grado_di_superamento_della_coscienza_fisica(class="col")) }}
+
+                    {% if form.Grado_di_superamento_della_coscienza_fisica.errors %}
+                      {% for error in form.Grado_di_superamento_della_coscienza_fisica.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                        <br>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+              </div>
+            </div>   
+            <!-- TextArea4 -->
+            <div class="card" >
+              <a class="btn btn-primary" data-toggle="collapse" href="#TextArea4" role="button" aria-expanded="true" aria-controls="TextArea4">
+                {{ form.Difficoltà_nella_meditazione.label }}
+              </a>
+
+              <div class="collapse card-body" id="TextArea4">
+                  <div>
+                    {{ (form.Difficoltà_nella_meditazione(class="col")) }}
+
+                    {% if form.Difficoltà_nella_meditazione.errors %}
+                      {% for error in form.Difficoltà_nella_meditazione.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                        <br>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+              </div>
+            </div> 
+            <!-- TextArea5 -->
+            <div class="card" >
+              <a class="btn btn-primary" data-toggle="collapse" href="#TextArea5" role="button" aria-expanded="true" aria-controls="TextArea5">
+                {{ form.Settori_da_migliorare.label }}
+              </a>
+
+              <div class="collapse card-body" id="TextArea5">
+                  <div>
+                    {{ (form.Settori_da_migliorare(class="col")) }}
+
+                    {% if form.Settori_da_migliorare.errors %}
+                      {% for error in form.Settori_da_migliorare.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                        <br>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+              </div>
+            </div> 
+          </div>
+        </div>
+        <!-- Totali -->
+        <div>
+          {% include 'gdiario_totali.html' %}           
+        </div>
+      </div>
+    </form>
+    
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+<div class="about-snippet-block text-center">
+    <img class="img-fluid shadow" style="padding: 10px;" width="150" src="{{ url_for('static', filename='img/m.png') }}" alt="">
+    <div class="card shadow" style="margin: 5px">
+        <h5> Giorno</h5>
+        <div class="row no-gutters">
+            <div class="col-md-8 pt-2 pl-2" style="text-align: left; "> Parte Passiva </div>
+            {{ form.Totale_P_Giorno (class="col-md-2 totali") }}
+        </div>
+        <div class="row no-gutters">
+            <div class="col-md-8 pt-2 pl-2" style="text-align: left; "> Meditazione </div>
+            {{ form.Totale_M_Giorno (class="col-md-2 totali") }}
+        </div>
+        <div class="row no-gutters">
+            <div class="col-md-8 pt-2 pl-2" style="text-align: left; "> Servizio Prestato </div>
+            {{ form.Totale_S_Giorno (class="col-md-2 totali") }}
+        </div>
+    </div>
+    <div class="card shadow" style="margin: 5px">
+        <h5> Mese</h5>
+        <div class="row no-gutters">
+            <div class="col-md-8 pt-2 pl-2" style="text-align: left; "> Parte Passiva </div>
+            {{ form.Totale_P_Mese (class="col-md-2 totali") }}
+        </div>
+        <div class="row no-gutters">
+            <div class="col-md-8 pt-2 pl-2" style="text-align: left; "> Meditazione Media</div>
+            {{ form.Totale_M_Mese (class="col-md-2 totali") }}
+        </div>
+        <div class="row no-gutters">
+            <div class="col-md-8 pt-2 pl-2" style="text-align: left; "> Servizio Prestato </div>
+            {{ form.Totale_S_Mese (class="col-md-2 totali") }}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

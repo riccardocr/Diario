@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}About Me{% endblock %}
+
+{% block content %}
+<div class="container content-container">
+
+    <div class="row no-gutters">
+
+        <div class="col-md-9 order-md-2">
+            <div class="about-page-block">
+                <p class="lead">Info</p>
+                <hr>
+                App creata per agevolare la compilazione del Diario 
+                <hr>
+                <p class="lead">Contatti.</p>
+                <hr>
+                <p>Email: <a class="custom-link" href="mailto:riccardo.cr@gmail.com">riccardo.cr@gmail.com</a></p>   
+                <hr>
+            </div>    
+        </div>
+
+        <div class="col-md-3 order-md-1">
+            {% include 'about_me_snippet.html' %}              
+        </div>
+
+    </div>
+    
+</div>
+{% endblock %}

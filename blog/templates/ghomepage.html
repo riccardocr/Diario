@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Diario Date{% endblock %}
+
+{% block content %}
+
+<div class="container content-container">
+  
+  <form action="{{ url_for('g_homepage', update='False') }}" method="POST" enctype="multipart/form-data" novalidate>
+    {{ form.hidden_tag() }} <!-- csrf_token -->
+    {{ form.GData(class="col-3 m-1",**{"hidden":"hidden"}) }}
+    {% if form.GData.errors %}
+      {% for error in form.GData.errors %}
+        <span class="text-danger">{{ error }}</span>
+        <br>
+      {% endfor %}
+    {% endif %}
+    <div class="row no-gutters p-2">
+      <div class="col-md-10 pb-1"> 
+        {{ form.mese (class="btn btn-primary shadow m-1", **{"onchange":"this.form.submit()"}) }}
+        {{ form.anno (class="btn btn-primary shadow m-1", **{"onchange":"this.form.submit()"}) }}
+      </div>
+      <div class="col-md-2 pb-1"> 
+        <button type=submit class="btn btn-info shadow m-1 rounded-circle">
+          <span class="iconify" title="Stampa" data-icon="fluent:print-20-regular" data-width="30" data-height="30"></span>
+        </button>
+      </div>
+    </div>
+  </form>
+  <form action="{{ url_for('g_homepage', update='False') }}" method="POST">
+    {{ form.hidden_tag() }} <!-- csrf_token -->
+    <div class="row no-gutters">
+      {% for d in range(0 , 31)  %}
+        {% if Dt["giorno"][d]=="sab" or Dt["giorno"][d]=="dom" %}
+          <div class=" festivi">
+        {% else %}
+          <div class=" feriali">
+        {% endif %}
+        {% if Dt["btn_on"][d]==0 %}
+          <a class="custom-link" href="{{ url_for('gdiario_update', user_id=Dt['user_id'][d] ,GData=Dt['data'][d]) }}">
+            {% if Dt["id"][d] == form.GData.data.day %} 
+              <div class="rettangolo" style="border: 2px solid #26380c;">
+            {% else %}
+              <div class="rettangolo">
+            {% endif %}
+              {{Dt["id"][d]}} <br> {{Dt["giorno"][d]}} 
+            </div>
+          </a>
+        {% elif  Dt["btn_on"][d]==1 %}
+          <a class="custom-link" href="{{ url_for('gdiario_update', user_id=Dt['user_id'][d] ,GData=Dt['data'][d]) }}">
+            {% if Dt["id"][d] == form.GData.data.day %} 
+              <div class="rettangolob" style="border: 2px solid #26380c;">
+            {% else %}
+              <div class="rettangolob">
+            {% endif %}
+              {{Dt["id"][d]}} <br> {{Dt["giorno"][d]}} 
+            </div>
+          </a>
+        {% endif %}
+        </div>
+          
+      {% endfor %}
+    </div>
+  </form>
+</div>
+{% endblock %}
